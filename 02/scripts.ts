@@ -11,6 +11,14 @@ type Cartao = {
     cvv: number
 }
 
+type Endereco = {
+    cep: string,
+    rua: string,
+    bairro: string,
+    cidade: string,
+    estado: string
+}
+
 type Carrinho = {
     item: Item,
     qtd: number,
@@ -18,4 +26,9 @@ type Carrinho = {
     frete: number,
     tipoTransacao: 'credito' | 'Debito',
     cartao: Cartao
+}
+
+type NovoCarrinho = Omit<Carrinho, 'tipoTransacao'> & {
+    endereco: Endereco,
+    tipoTransacao: Lowercase<'credito' | 'Debito'>
 }
